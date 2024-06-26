@@ -1,4 +1,3 @@
-import React from "react";
 import TypewriterComponent from "typewriter-effect";
 
 function Hero() {

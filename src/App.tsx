@@ -1,12 +1,14 @@
 import "./App.css";
 import "./index.css";
 import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
+import { ThemeProvider } from "@/components/theme-provider";
 
 function App() {
   return (
-    <div className="h-screen">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <LandingPage />
-    </div>
+    </ThemeProvider>
   );
 }
 

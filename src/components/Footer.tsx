@@ -1,10 +1,8 @@
-import React from "react";
-
 const Footer = () => {
   return (
-    <div className="p-4 flex justify-center">
+    <footer className="text-white py-12 flex justify-center bg-indigo-900">
       <p>© 2024. Minh Nguyen</p>
-    </div>
+    </footer>
   );
 };
 

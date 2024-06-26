@@ -4,11 +4,13 @@ import LandingNavbar from "@/components/LandingNavbar";
 
 const LandingPage = () => {
   return (
-    <main className="h-full bg-[#111827]">
-      <LandingNavbar />
-      <Hero />
+    <>
+      <main className="h-screen">
+        <LandingNavbar />
+        <Hero />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 };
 
