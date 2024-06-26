@@ -1,5 +1,3 @@
-import React from "react";
-
 function RegisterPage() {
   return (
     <div className="w-full max-w-xs">
