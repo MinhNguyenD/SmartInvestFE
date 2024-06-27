@@ -2,7 +2,7 @@ import TypewriterComponent from "typewriter-effect";
 
 function Hero() {
   return (
-    <div className="py-36 text-white text-center">
+    <div className="py-36 text-center">
       <div className="text-4xl font-extrabold">
         <p>The best platform for</p>
         <div className="leading-normal text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-500">
