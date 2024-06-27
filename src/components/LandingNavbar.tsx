@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 const LandingNavbar = () => {
   return (
     <nav className="p-4 bg-transparent flex items-center justify-between">
       <div className="relative">
-        <p className="text-2xl font-bold">Smavest</p>
+        <Link to="/" className="text-2xl font-bold">
+          Smavest
+        </Link>
       </div>
       <div className="flex items-center gap-x-4">
         <Link to="/contact" className="font-semibold">
@@ -24,6 +27,9 @@ const LandingNavbar = () => {
             Login
           </Button>
         </Link>
+        <div className="flex justify-end">
+          <ModeToggle />
+        </div>
       </div>
     </nav>
   );

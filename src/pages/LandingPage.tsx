@@ -8,9 +8,6 @@ const LandingPage = () => {
     <>
       <main className="h-screen">
         <LandingNavbar />
-        <div className="flex justify-end px-4">
-          <ModeToggle />
-        </div>
         <Hero />
       </main>
       <Footer />
