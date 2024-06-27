@@ -1,7 +1,24 @@
 import LandingNavbar from "@/components/LandingNavbar";
+import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      axios.post("test/url", {
+        email: email,
+        password: password,
+      });
+    } catch {
+      alert("Incorrect Username and/or Password!");
+    }
+  };
+
   return (
     <div>
       <LandingNavbar />
@@ -18,7 +35,7 @@ function LoginPage() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={login}>
             <div>
               <label
                 htmlFor="email"
@@ -28,6 +45,7 @@ function LoginPage() {
               </label>
               <div className="mt-2">
                 <input
+                  onChange={(input) => setEmail(input.target.value)}
                   id="email"
                   name="email"
                   type="email"
@@ -57,6 +75,7 @@ function LoginPage() {
               </div>
               <div className="mt-2">
                 <input
+                  onChange={(input) => setPassword(input.target.value)}
                   id="password"
                   name="password"
                   type="password"

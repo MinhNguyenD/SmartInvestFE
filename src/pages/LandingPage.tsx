@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import LandingNavbar from "@/components/LandingNavbar";
-import { ModeToggle } from "@/components/mode-toggle";
 
 const LandingPage = () => {
   return (

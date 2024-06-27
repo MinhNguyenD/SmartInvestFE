@@ -1,7 +1,30 @@
 import { Link } from "react-router-dom";
 import LandingNavbar from "@/components/LandingNavbar";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function RegisterPage() {
+const RegisterPage = () => {
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const navigate = useNavigate();
+  const validate = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    let userNameRegEx = /^[a-zA-Z0-9]+$/;
+    let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/;
+    let passwordRegEx = /^[\w\W]{8,}/;
+
+    let firstNameValid = userNameRegEx.test(username);
+    let emailValid = emailRegEx.test(email);
+    let passwordValid = passwordRegEx.test(password);
+    let passwordConfirmValid = password === passwordConfirm;
+    if (firstNameValid && emailValid && passwordValid && passwordConfirmValid) {
+      navigate("/login");
+    } else {
+      alert("Register failed. There are errors in your inputs");
+    }
+  };
   return (
     <div>
       <LandingNavbar />
@@ -18,7 +41,7 @@ function RegisterPage() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={validate}>
             <div>
               <label
                 htmlFor="username"
@@ -28,6 +51,7 @@ function RegisterPage() {
               </label>
               <div className="mt-2">
                 <input
+                  onChange={(input) => setUserName(input.target.value)}
                   id="username"
                   name="username"
                   type="text"
@@ -46,6 +70,7 @@ function RegisterPage() {
               </label>
               <div className="mt-2">
                 <input
+                  onChange={(input) => setEmail(input.target.value)}
                   id="email"
                   name="email"
                   type="email"
@@ -67,6 +92,7 @@ function RegisterPage() {
               </div>
               <div className="mt-2">
                 <input
+                  onChange={(input) => setPassword(input.target.value)}
                   id="password"
                   name="password"
                   type="password"
@@ -88,8 +114,9 @@ function RegisterPage() {
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
+                  onChange={(input) => setPasswordConfirm(input.target.value)}
+                  id="confirmPassword"
+                  name="confirmPassword"
                   type="password"
                   autoComplete="current-password"
                   required
@@ -121,6 +148,6 @@ function RegisterPage() {
       </div>
     </div>
   );
-}
+};
 
 export default RegisterPage;
