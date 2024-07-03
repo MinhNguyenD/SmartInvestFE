@@ -10,17 +10,25 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const navigate = useNavigate();
-  const validate = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const validate = () => {
     let userNameRegEx = /^[a-zA-Z0-9]+$/;
     let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/;
-    let passwordRegEx = /^[\w\W]{8,}/;
+    let passwordRegEx = /^[a-zA-Z0-9]+/;
 
     let usernameValid = userNameRegEx.test(username);
     let emailValid = emailRegEx.test(email);
     let passwordValid = passwordRegEx.test(password);
     let passwordConfirmValid = password === passwordConfirm;
-    if (usernameValid && emailValid && passwordValid && passwordConfirmValid) {
+    return usernameValid && emailValid && passwordValid && passwordConfirmValid;
+  };
+
+  const handleRegisterSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (!validate()) {
+      alert("Register failed. Invalid inputs");
+      return;
+    }
+    try {
       const res = await axios.post("http://localhost:5035/api/auth/register", {
         Username: username,
         Email: email,
@@ -28,9 +36,11 @@ const RegisterPage = () => {
       });
       if (res) {
         navigate("/login");
+      } else {
+        alert("Register failed. System errors!");
       }
-    } else {
-      alert("Register failed. There are errors in your inputs");
+    } catch {
+      alert("Register failed. System errors!");
     }
   };
   return (
@@ -49,7 +59,7 @@ const RegisterPage = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={validate}>
+          <form className="space-y-6" onSubmit={handleRegisterSubmit}>
             <div>
               <label
                 htmlFor="username"

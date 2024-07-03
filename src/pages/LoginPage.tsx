@@ -1,19 +1,21 @@
 import LandingNavbar from "@/components/LandingNavbar";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const login = (e: React.SyntheticEvent) => {
+  const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      axios.post("test/url", {
+      const res = await axios.post("http://localhost:5035/api/auth/login", {
         email: email,
         password: password,
       });
+      navigate("/dashboard");
     } catch {
       alert("Incorrect Username and/or Password!");
     }
@@ -35,7 +37,7 @@ function LoginPage() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={login}>
+          <form className="space-y-6" onSubmit={handleLoginSubmit}>
             <div>
               <label
                 htmlFor="email"
