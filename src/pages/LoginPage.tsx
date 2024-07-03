@@ -15,7 +15,7 @@ function LoginPage() {
         email: email,
         password: password,
       });
-      navigate("/dashboard");
+      navigate("/home");
     } catch {
       alert("Incorrect Username and/or Password!");
     }

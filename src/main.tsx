@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import { ThemeProvider } from "./components/theme-provider.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
+import HomePage from "./pages/HomePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "/home",
+    element: <HomePage />,
     errorElement: <ErrorPage />,
   },
 ]);

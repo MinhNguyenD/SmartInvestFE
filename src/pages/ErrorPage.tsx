@@ -10,9 +10,6 @@ export default function ErrorPage() {
     <>
       <main className="h-screen">
         <LandingNavbar />
-        <div className="flex justify-end px-4">
-          <ModeToggle />
-        </div>
         <div className="flex items-center justify-center py-36">
           <div className="text-center">
             <h1 className="font-semibold">Oops!</h1>
