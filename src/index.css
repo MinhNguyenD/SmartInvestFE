@@ -8,6 +8,11 @@ body,
   height: 100%;
 }
 
+input {
+  color: black;
+  padding: 0.5rem;
+}
+
 @layer base {
   h1 {
     @apply text-6xl;

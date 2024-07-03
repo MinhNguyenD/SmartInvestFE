@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import LandingNavbar from "@/components/LandingNavbar";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RegisterPage = () => {
   const [username, setUserName] = useState("");
@@ -9,18 +10,25 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const navigate = useNavigate();
-  const validate = (e: React.SyntheticEvent) => {
+  const validate = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     let userNameRegEx = /^[a-zA-Z0-9]+$/;
     let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/;
     let passwordRegEx = /^[\w\W]{8,}/;
 
-    let firstNameValid = userNameRegEx.test(username);
+    let usernameValid = userNameRegEx.test(username);
     let emailValid = emailRegEx.test(email);
     let passwordValid = passwordRegEx.test(password);
     let passwordConfirmValid = password === passwordConfirm;
-    if (firstNameValid && emailValid && passwordValid && passwordConfirmValid) {
-      navigate("/login");
+    if (usernameValid && emailValid && passwordValid && passwordConfirmValid) {
+      const res = await axios.post("http://localhost:5035/api/auth/register", {
+        Username: username,
+        Email: email,
+        Password: password,
+      });
+      if (res) {
+        navigate("/login");
+      }
     } else {
       alert("Register failed. There are errors in your inputs");
     }
