@@ -11,7 +11,6 @@ export const loginUser = async (email: string, password: string) => {
     });
     return res.data;
   } catch (error) {
-    console.log("Hello");
     if (axios.isAxiosError(error)) {
       throw new Error(error.response?.data?.message || "Login failed");
     }
