@@ -1,36 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import LandingPage from "./pages/LandingPage.tsx";
-import LoginPage from "./pages/LoginPage.tsx";
-import RegisterPage from "./pages/RegisterPage.tsx";
+import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "./components/theme-provider.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
-import HomePage from "./pages/HomePage.tsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LandingPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/home",
-    element: <HomePage />,
-    errorElement: <ErrorPage />,
-  },
-]);
+import { router } from "./routes/Routes.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -1,7 +1,19 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import LandingPage from "./pages/LandingPage";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./components/theme-provider";
 
-function App() {}
+function App() {
+  return (
+    <>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
+      </ThemeProvider>
+    </>
+  );
+}
 
 export default App;

@@ -1,4 +1,5 @@
 import LandingNavbar from "@/components/LandingNavbar";
+import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,18 +7,17 @@ import { Link, useNavigate } from "react-router-dom";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginFailed, setLoginFailed] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5035/api/auth/login", {
-        email: email,
-        password: password,
-      });
+      await login(email, password);
       navigate("/home");
-    } catch {
-      alert("Incorrect Username and/or Password!");
+    } catch (error) {
+      setLoginFailed(true);
     }
   };
 
@@ -37,6 +37,17 @@ function LoginPage() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          {loginFailed && (
+            <div className="flex justify-between bg-red-300 text-red-800 p-5 mb-4 border-solid border-[1px] border-red-600 text-sm font-semibold">
+              <p>Incorrect username or password</p>
+              <button
+                onClick={() => setLoginFailed(false)}
+                className="text-red-900"
+              >
+                &#x2715;
+              </button>
+            </div>
+          )}
           <form className="space-y-6" onSubmit={handleLoginSubmit}>
             <div>
               <label
@@ -67,12 +78,12 @@ function LoginPage() {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a
+                  {/* <a
                     href="#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </a>
+                  </a> */}
                 </div>
               </div>
               <div className="mt-2">

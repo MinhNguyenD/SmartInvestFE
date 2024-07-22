@@ -3,6 +3,7 @@ import LandingNavbar from "@/components/LandingNavbar";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
 
 const RegisterPage = () => {
   const [username, setUserName] = useState("");
@@ -10,6 +11,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const navigate = useNavigate();
+  const { register } = useAuth();
   const validate = () => {
     let userNameRegEx = /^[a-zA-Z0-9]+$/;
     let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/;
@@ -29,17 +31,9 @@ const RegisterPage = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5035/api/auth/register", {
-        Username: username,
-        Email: email,
-        Password: password,
-      });
-      if (res) {
-        navigate("/login");
-      } else {
-        alert("Register failed. System errors!");
-      }
-    } catch {
+      await register(username, email, password);
+      navigate("/home");
+    } catch (error) {
       alert("Register failed. System errors!");
     }
   };
