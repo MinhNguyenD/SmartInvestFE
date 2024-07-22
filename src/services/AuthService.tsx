@@ -1,4 +1,4 @@
-import { UserAuth, UserProfile } from "@/models/User";
+import { UserAuth } from "@/models/User";
 import axios from "axios";
 
 const api = "http://localhost:5035/api/auth/";

@@ -8,9 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
-type Props = {};
-
-const ProfileDropdown = (props: Props) => {
+const ProfileDropdown = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   return (

@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import LandingNavbar from "@/components/LandingNavbar";
-import { ModeToggle } from "@/components/mode-toggle";
 import { ErrorResponse, useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {

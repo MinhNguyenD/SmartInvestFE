@@ -2,9 +2,7 @@ import { ModeToggle } from "./mode-toggle";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   return (
     <nav className="p-4 bg-transparent flex items-center justify-between">
       <div className="relative">
