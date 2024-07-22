@@ -1,5 +1,5 @@
 import { UserProfile } from "@/models/User";
-import { loginUser, registerUser } from "@/services/authservice";
+import { loginUser, registerUser } from "@/services/AuthService";
 import axios from "axios";
 import React from "react";
 import { createContext, ReactNode, useEffect, useState } from "react";
