@@ -6,6 +6,7 @@ import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoutes";
+import StockProfilePage from "@/pages/StockProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
         errorElement: <ErrorPage />,
+      },
+      {
+        path: "stock/:symbol/profile",
+        element: (
+          <ProtectedRoute>
+            <StockProfilePage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

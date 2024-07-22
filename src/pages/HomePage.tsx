@@ -1,19 +1,48 @@
+import CardList from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
-import { Button } from "@/components/ui/button";
+import { CompanySearch } from "@/stock";
 import axios from "axios";
-import React from "react";
+import { useState } from "react";
 
-type Props = {};
-
-const HomePage = (props: Props) => {
-  const search = (query: string) => {
-    // axios.get
+const HomePage = () => {
+  const [searchResults, setSearchResult] = useState<CompanySearch[]>([]);
+  const [searchSubmitted, setSearchSubmitted] = useState(false);
+  const handleSearch = async (query: string) => {
+    try {
+      const res = await axios.get<CompanySearch[]>(
+        `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${
+          import.meta.env.VITE_STOCK_API_KEY
+        }`
+      );
+      setSearchResult(res.data);
+      setSearchSubmitted(true);
+    } catch {
+      console.log("Server error");
+    }
   };
+
+  const handleSave = () => {
+    console.log("Save this to profile");
+  };
+
+  const handleAnalyze = () => {
+    //
+    console.log("Analyze this stock");
+  };
+
   return (
     <div>
       <Navbar></Navbar>
-      <SearchBar handleSearch={search}></SearchBar>
+      <SearchBar handleSearchSubmit={handleSearch}></SearchBar>
+      <br></br>
+      {searchSubmitted && (
+        <CardList
+          handleSaveClick={handleSave}
+          handleAnalyzeClick={handleAnalyze}
+          companies={searchResults}
+        ></CardList>
+      )}
     </div>
   );
 };
