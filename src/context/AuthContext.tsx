@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const isAuthenticated = () => {
-    console.log(user);
     return !!user;
   };
 

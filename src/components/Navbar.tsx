@@ -15,9 +15,6 @@ const Navbar = (props: Props) => {
         </Link>
       </div>
       <div className="flex items-center gap-x-4">
-        <Link to="/home" className="font-semibold">
-          Home
-        </Link>
         <Link to="/market" className="font-semibold">
           Market
         </Link>
