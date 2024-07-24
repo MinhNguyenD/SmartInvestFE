@@ -21,7 +21,7 @@ export const saveStock = async (symbol: string) => {
   }
 };
 
-export const deleteStock = async (symbol: string) => {
+export const removeStock = async (symbol: string) => {
   try {
     const res = await axios.delete<Stock[]>(api + `?symbol=${symbol}`);
     return res.data;

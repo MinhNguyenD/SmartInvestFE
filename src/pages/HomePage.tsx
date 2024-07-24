@@ -1,4 +1,4 @@
-import CardList from "@/components/CardList";
+import { CardList } from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import { saveStock } from "@/services/PortfolioService";
@@ -28,10 +28,11 @@ const HomePage = () => {
       await saveStock(symbol);
     } catch (error) {
       alert("cant save stock");
+      console.log(error);
     }
   };
 
-  const handleAnalyze = () => {
+  const handleAnalyze = (symbol: string) => {
     console.log("Analyze this stock");
   };
 

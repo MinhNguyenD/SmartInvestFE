@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
-        path: "/porfolio",
+        path: "/portfolio",
         element: (
           <ProtectedRoute>
             <PorfolioPage />

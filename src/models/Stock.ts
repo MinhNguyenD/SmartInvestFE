@@ -6,5 +6,4 @@ export type Stock = {
   lastDiv: number;
   industry: string;
   marketCap: number;
-  comments: any;
 };
