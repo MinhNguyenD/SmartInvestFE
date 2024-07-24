@@ -7,6 +7,7 @@ import RegisterPage from "@/pages/RegisterPage";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoutes";
 import StockProfilePage from "@/pages/StockProfilePage";
+import PorfolioPage from "@/pages/PorfolioPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,15 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <HomePage />
+          </ProtectedRoute>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/porfolio",
+        element: (
+          <ProtectedRoute>
+            <PorfolioPage />
           </ProtectedRoute>
         ),
         errorElement: <ErrorPage />,

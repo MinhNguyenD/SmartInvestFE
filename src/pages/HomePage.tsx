@@ -1,6 +1,7 @@
 import CardList from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
+import { saveStock } from "@/services/PortfolioService";
 import { CompanySearch } from "@/stock";
 import axios from "axios";
 import { useState } from "react";
@@ -22,12 +23,15 @@ const HomePage = () => {
     }
   };
 
-  const handleSave = () => {
-    console.log("Save this to profile");
+  const handleSave = async (symbol: string) => {
+    try {
+      await saveStock(symbol);
+    } catch (error) {
+      alert("cant save stock");
+    }
   };
 
   const handleAnalyze = () => {
-    //
     console.log("Analyze this stock");
   };
 

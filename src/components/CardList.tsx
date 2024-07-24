@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 
 interface CardListProps {
   companies: CompanySearch[];
-  handleSaveClick: () => void;
+  handleSaveClick: (symbol: string) => void;
   handleAnalyzeClick: () => void;
 }
 
@@ -40,7 +40,10 @@ const CardList: React.FC<CardListProps> = ({
                   <CardDescription>{company.name}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-x-3">
-                  <Button className="bg-green-300" onClick={handleSaveClick}>
+                  <Button
+                    className="bg-green-300"
+                    onClick={() => handleSaveClick(company.symbol)}
+                  >
                     Save
                   </Button>
                   <Button className="bg-blue-300" onClick={handleAnalyzeClick}>
