@@ -14,7 +14,7 @@ export const getPortfolio = async () => {
 
 export const saveStock = async (symbol: string) => {
   try {
-    const res = await axios.post<Stock[]>(api + `?symbol=${symbol}`);
+    const res = await axios.post(api + `?symbol=${symbol}`);
     return res.data;
   } catch (error) {
     throw error;
@@ -23,7 +23,7 @@ export const saveStock = async (symbol: string) => {
 
 export const removeStock = async (symbol: string) => {
   try {
-    const res = await axios.delete<Stock[]>(api + `?symbol=${symbol}`);
+    const res = await axios.delete(api + `?symbol=${symbol}`);
     return res.data;
   } catch (error) {
     throw error;

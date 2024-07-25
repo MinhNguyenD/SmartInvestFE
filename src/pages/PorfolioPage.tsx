@@ -1,11 +1,13 @@
 import { PortfolioList } from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import { Stock } from "@/models/Stock";
+import { createAnalysis } from "@/services/AnalyzeService";
 import { getPortfolio, removeStock } from "@/services/PortfolioService";
 import { useEffect, useState } from "react";
 
 const PorfolioPage = () => {
   const [portfolioHoldings, setPortfolioHoldings] = useState<Stock[]>([]);
+  const [htmlContent, setHtmlContent] = useState("");
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
@@ -19,7 +21,12 @@ const PorfolioPage = () => {
     fetchPortfolio();
   }, []);
 
-  const handleAnalyze = async (symbol: string) => {};
+  const handleAnalyze = async (symbol: string) => {
+    try {
+      const res = await createAnalysis(symbol);
+      setHtmlContent(res.content);
+    } catch (error) {}
+  };
 
   const handleRemove = async (symbol: string) => {
     try {
@@ -39,6 +46,7 @@ const PorfolioPage = () => {
         handleAnalyzeClick={handleAnalyze}
         handleRemoveClick={handleRemove}
       ></PortfolioList>
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
     </div>
   );
 };
