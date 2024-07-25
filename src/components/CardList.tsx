@@ -53,7 +53,10 @@ export const CardList: React.FC<CardListProps> = ({
                   >
                     Save
                   </Button>
-                  <Button className="bg-blue-300" onClick={handleAnalyzeClick}>
+                  <Button
+                    className="bg-blue-300"
+                    onClick={() => handleAnalyzeClick(company.symbol)}
+                  >
                     Analyze
                   </Button>
                 </CardContent>

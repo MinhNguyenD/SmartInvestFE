@@ -1,14 +1,17 @@
 import { CardList } from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
+import { createAnalysis } from "@/services/AnalyzeService";
 import { saveStock } from "@/services/PortfolioService";
 import { CompanySearch } from "@/stock";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [searchResults, setSearchResult] = useState<CompanySearch[]>([]);
   const [searchSubmitted, setSearchSubmitted] = useState(false);
+  const navigate = useNavigate();
   const handleSearch = async (query: string) => {
     try {
       const res = await axios.get<CompanySearch[]>(
@@ -32,8 +35,10 @@ const HomePage = () => {
     }
   };
 
-  const handleAnalyze = (symbol: string) => {
-    console.log("Analyze this stock");
+  const handleAnalyze = async (symbol: string) => {
+    try {
+      navigate(`/stock/${symbol}/analysis`);
+    } catch (error) {}
   };
 
   return (

@@ -8,6 +8,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoutes";
 import StockProfilePage from "@/pages/StockProfilePage";
 import PorfolioPage from "@/pages/PorfolioPage";
+import AnalysisPage from "@/pages/AnalysisPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <StockProfilePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "stock/:symbol/analysis",
+        element: (
+          <ProtectedRoute>
+            <AnalysisPage />
           </ProtectedRoute>
         ),
       },
