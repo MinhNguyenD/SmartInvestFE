@@ -1,18 +1,25 @@
-import Analysis from "@/components/Analysis";
+import AnalysisContent from "@/components/AnalysisContent";
 import Navbar from "@/components/Navbar";
-import { createAnalysis } from "@/services/AnalyzeService";
+import { Analysis } from "@/models/Analysis";
+import { getAnalysisById } from "@/services/AnalyzeService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const AnalysisPage = () => {
-  const { symbol } = useParams<{ symbol: string }>();
-  const [analysis, setAnalysis] = useState("");
+  const { id } = useParams<{ id: string }>();
+  const [analysis, setAnalysis] = useState<Analysis>({
+    id: 0,
+    stockSymbol: "",
+    dateCreated: "",
+    content: "",
+    userId: "",
+    stockId: 0,
+  });
   useEffect(() => {
     const fetchAnalysis = async () => {
       try {
-        const res = await createAnalysis(symbol!);
-        console.log("Helloooo");
-        setAnalysis(res.content);
+        const res = await getAnalysisById(Number(id)!);
+        setAnalysis(res);
       } catch (error) {}
     };
     fetchAnalysis();
@@ -20,7 +27,13 @@ const AnalysisPage = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <Analysis analysisContent={analysis}></Analysis>
+      <div className="container">
+        <h1 className="font-bold">
+          {analysis.stockSymbol}'s Financial Analysis
+        </h1>
+        <h4 className="font-semibold">{analysis.dateCreated}</h4>
+        <AnalysisContent analysisContent={analysis!.content}></AnalysisContent>
+      </div>
     </div>
   );
 };

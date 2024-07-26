@@ -1,6 +1,7 @@
 import { PortfolioList } from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import { Stock } from "@/models/Stock";
+import { createAnalysis } from "@/services/AnalyzeService";
 import { getPortfolio, removeStock } from "@/services/PortfolioService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +24,8 @@ const PorfolioPage = () => {
 
   const handleAnalyze = async (symbol: string) => {
     try {
-      navigate(`/stock/${symbol}/analysis`);
+      const analysis = await createAnalysis(symbol!);
+      navigate(`/analyses/${analysis.id}`);
     } catch (error) {}
   };
 
@@ -40,11 +42,14 @@ const PorfolioPage = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <PortfolioList
-        stocks={portfolioHoldings}
-        handleAnalyzeClick={handleAnalyze}
-        handleRemoveClick={handleRemove}
-      ></PortfolioList>
+      <div className="container">
+        <h1 className="font-bold my-3">My Portfolio</h1>
+        <PortfolioList
+          stocks={portfolioHoldings}
+          handleAnalyzeClick={handleAnalyze}
+          handleRemoveClick={handleRemove}
+        ></PortfolioList>
+      </div>
     </div>
   );
 };

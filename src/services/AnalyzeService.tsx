@@ -1,9 +1,9 @@
 import { Analysis } from "@/models/Analysis";
 import axios from "axios";
 
-const api = "http://localhost:5177/api/analysis";
+const api = "http://localhost:5177/api/analyses";
 
-export const getAnalysis = async () => {
+export const getAllAnalyses = async () => {
   try {
     const res = await axios.get<Analysis[]>(api);
     return res.data;
@@ -12,9 +12,18 @@ export const getAnalysis = async () => {
   }
 };
 
+export const getAnalysisById = async (id: number) => {
+  try {
+    const res = await axios.get<Analysis>(api + `/${id}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const createAnalysis = async (symbol: string) => {
   try {
-    const res = await axios.post<Analysis>(api + `?symbol=${symbol}`);
+    const res = await axios.post(api + `?symbol=${symbol}`);
     return res.data;
   } catch (error) {
     throw error;

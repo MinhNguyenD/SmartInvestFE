@@ -11,8 +11,11 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-x-4">
-        <Link to="/market" className="font-semibold">
+        <Link to="/home" className="font-semibold">
           Market
+        </Link>
+        <Link to="/analyses" className="font-semibold">
+          Analyses
         </Link>
         <Link to="/portfolio" className="font-semibold">
           Portfolio

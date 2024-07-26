@@ -9,6 +9,7 @@ import ProtectedRoute from "./ProtectedRoutes";
 import StockProfilePage from "@/pages/StockProfilePage";
 import PorfolioPage from "@/pages/PorfolioPage";
 import AnalysisPage from "@/pages/AnalysisPage";
+import AnalysesPage from "@/pages/AnalysesPage";
 
 export const router = createBrowserRouter([
   {
@@ -53,7 +54,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "stock/:symbol/analysis",
+        path: "/analyses",
+        element: (
+          <ProtectedRoute>
+            <AnalysesPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/analyses/:id",
         element: (
           <ProtectedRoute>
             <AnalysisPage />
