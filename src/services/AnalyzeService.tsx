@@ -30,6 +30,15 @@ export const createAnalysis = async (symbol: string) => {
   }
 };
 
+export const sendEmailAnalysis = async (id: number) => {
+  try {
+    const res = await axios.post(api + `/${id}/email`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const deleteAnalysis = async (id: number) => {
   try {
     const res = await axios.delete(api + `/${id}`);

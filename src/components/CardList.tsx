@@ -27,6 +27,7 @@ interface AnalysesListProps {
   analyses: Analysis[];
   handleDeleteClick: (id: number) => void;
   handleViewClick: (id: number) => void;
+  handleEmailClick: (id: number) => void;
 }
 
 export const CardList: React.FC<CardListProps> = ({
@@ -140,6 +141,7 @@ export const AnalysesList: React.FC<AnalysesListProps> = ({
   analyses,
   handleDeleteClick,
   handleViewClick,
+  handleEmailClick,
 }) => {
   return (
     <div>
@@ -167,6 +169,12 @@ export const AnalysesList: React.FC<AnalysesListProps> = ({
                   onClick={() => handleViewClick(analysis.id)}
                 >
                   View
+                </Button>
+                <Button
+                  className="bg-green-400"
+                  onClick={() => handleEmailClick(analysis.id)}
+                >
+                  Email
                 </Button>
                 <Button
                   className="bg-red-400"

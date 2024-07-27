@@ -1,7 +1,7 @@
 import AnalysisContent from "@/components/AnalysisContent";
 import Navbar from "@/components/Navbar";
 import { Analysis } from "@/models/Analysis";
-import { getAnalysisById } from "@/services/AnalyzeService";
+import { getAnalysisById, sendEmailAnalysis } from "@/services/AnalyzeService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,6 +15,13 @@ const AnalysisPage = () => {
     userId: "",
     stockId: 0,
   });
+  const handleEmailAnalysis = async () => {
+    try {
+      await sendEmailAnalysis(analysis.id);
+    } catch (error) {
+      console.log("Server error: Can't send email");
+    }
+  };
   useEffect(() => {
     const fetchAnalysis = async () => {
       try {
@@ -32,7 +39,10 @@ const AnalysisPage = () => {
           {analysis.stockSymbol}'s Financial Analysis
         </h1>
         <h4 className="font-semibold">{analysis.dateCreated}</h4>
-        <AnalysisContent analysisContent={analysis!.content}></AnalysisContent>
+        <AnalysisContent
+          analysisContent={analysis!.content}
+          handleEmailClick={handleEmailAnalysis}
+        ></AnalysisContent>
       </div>
     </div>
   );

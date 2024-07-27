@@ -1,7 +1,11 @@
 import { AnalysesList } from "@/components/CardList";
 import Navbar from "@/components/Navbar";
 import { Analysis } from "@/models/Analysis";
-import { deleteAnalysis, getAllAnalyses } from "@/services/AnalyzeService";
+import {
+  deleteAnalysis,
+  getAllAnalyses,
+  sendEmailAnalysis,
+} from "@/services/AnalyzeService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +22,13 @@ const AnalysesPage = () => {
     var analyses = await getAllAnalyses();
     setAnalyses(analyses);
   };
-
+  const handleEmailAnalysis = async (id: number) => {
+    try {
+      await sendEmailAnalysis(id);
+    } catch (error) {
+      console.log("Server error: Can't send email");
+    }
+  };
   useEffect(() => {
     const fetchAnalyses = async () => {
       try {
@@ -37,6 +47,7 @@ const AnalysesPage = () => {
           analyses={analyses}
           handleDeleteClick={handleDelete}
           handleViewClick={handleView}
+          handleEmailClick={handleEmailAnalysis}
         ></AnalysesList>
       </div>
     </div>
