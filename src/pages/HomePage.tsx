@@ -10,14 +10,10 @@ import { useNavigate } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogHeader,
-  AlertDialogFooter,
   AlertDialogContent,
   AlertDialogTitle,
   AlertDialogDescription,
-  AlertDialogCancel,
-  AlertDialogAction,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 
 const HomePage = () => {
   const [searchResults, setSearchResult] = useState<CompanySearch[]>([]);
@@ -27,9 +23,7 @@ const HomePage = () => {
   const handleSearch = async (query: string) => {
     try {
       const res = await axios.get<CompanySearch[]>(
-        `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${
-          import.meta.env.VITE_STOCK_API_KEY
-        }`
+        ""
       );
       setSearchResult(res.data);
       setSearchSubmitted(true);

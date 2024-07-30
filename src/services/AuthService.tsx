@@ -1,7 +1,8 @@
 import { UserAuth } from "@/models/User";
 import axios from "axios";
 
-const api = "http://localhost:5035/api/auth/";
+const api =
+  "";
 
 export const loginUser = async (email: string, password: string) => {
   try {

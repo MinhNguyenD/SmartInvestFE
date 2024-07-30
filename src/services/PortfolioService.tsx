@@ -1,7 +1,8 @@
 import { Stock } from "@/models/Stock";
 import axios from "axios";
 
-const api = "http://localhost:5177/api/portfolio";
+const api =
+  "";
 
 export const getPortfolio = async () => {
   try {
