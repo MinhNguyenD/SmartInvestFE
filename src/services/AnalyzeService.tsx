@@ -1,7 +1,8 @@
 import { Analysis } from "@/models/Analysis";
 import axios from "axios";
 
-const api = "http://localhost:5177/api/analyses";
+const api =
+  "http://ab9a681cc71ce412499f568f6949544b-1334137487.us-east-1.elb.amazonaws.com/api/analyses";
 
 export const getAllAnalyses = async () => {
   try {

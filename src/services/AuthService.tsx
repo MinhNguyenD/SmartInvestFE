@@ -1,7 +1,8 @@
 import { UserAuth } from "@/models/User";
 import axios from "axios";
 
-const api = "http://localhost:5035/api/auth/";
+const api =
+  "http://ac614ef40e05a469c8fe3498f24983ed-1317741986.us-east-1.elb.amazonaws.com/api/auth/";
 
 export const loginUser = async (email: string, password: string) => {
   try {
