@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
       setToken(data.token);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + data.token;
     } catch (error) {
       throw error;
     }
@@ -80,6 +81,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem("user");
     setUser(null);
     setToken(null);
+    delete axios.defaults.headers.common["Authorization"];
   };
 
   return (
